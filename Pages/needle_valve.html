@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Needle Valve Calculation Form</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Needle Valve Calculation Form</h1>
+    </div>
+
+    <div class="container">
+        <table>
+            <tr>
+                <th colspan="2">VALVE DN</th>
+                <td><input type="text" value="800"> mm</td>
+                <th colspan="2">VALVE PN</th>
+                <td><input type="text" value="16"> bar</td>
+            </tr>
+            <tr>
+                <th colspan="2">PIPELINE DN</th>
+                <td colspan="4"><input type="text" value="800"> mm</td>
+            </tr>
+            <tr>
+                <th rowspan="2">CALCULATE</th>
+                <th>Case A</th>
+                <th>Case B</th>
+                <th>Case C</th>
+                <th colspan="2">Units</th>
+            </tr>
+            <tr>
+                <td><input type="text" value="1500.00"></td>
+                <td><input type="text" value="2000.00"></td>
+                <td><input type="text" value="3000.00"></td>
+                <td colspan="2">
+                    <select>
+                        <option value="1" selected>m³/h</option>
+                        <option value="0.000277778">m³/s</option>
+                        <option value="0.277778">L/s</option>
+                        <option value="0.0166667">L/min</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Inlet</th>
+                <td><input type="text" value="8.00"></td>
+                <td><input type="text" value="8.00"></td>
+                <td><input type="text" value="8.00"></td>
+                <td colspan="2">
+                    <select>
+                        <option value="1" selected>bar</option>
+                        <option value="0.01">kPa</option>
+                        <option value="0.0145038">psi</option>
+                        <option value="0.10197">mWc</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Outlet</th>
+                <td><input type="text" value="4.00"></td>
+                <td><input type="text" value="4.00"></td>
+                <td><input type="text" value="4.00"></td>
+                <td colspan="2">
+                    <select>
+                        <option value="1" selected>bar</option>
+                        <option value="0.01">kPa</option>
+                        <option value="0.0145038">psi</option>
+                        <option value="0.10197">mWc</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="submit" style="text-align: center;">
+        <button type="submit">Submit</button>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+</body>
+</html>

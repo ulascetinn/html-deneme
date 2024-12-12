@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Speed Calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Flow Speed Calculator</h1>
+    </div>
+
+    <div class="container">
+        <div class="input-field">
+            <label for="dn">DN (mm):</label>
+            <input type="number" id="dn" name="dn" oninput="calculateSpeed()">
+        </div>
+        <div class="input-field">
+            <label for="flowrate">Flow Rate:</label>
+            <input type="number" id="flowrate" name="flowrate" oninput="calculateSpeed()">
+            <select id="unit" onchange="calculateSpeed()">
+                <option value="1">m³/s</option>
+                <option value="0.001">L/s</option>
+                <option value="0.000277778">m³/h</option>
+                <option value="0.06">L/min</option>
+            </select>
+        </div>
+        <div id="result">Flow Speed: </div>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        function calculateSpeed() {
+            var dn = parseFloat(document.getElementById('dn').value);
+            var flowrate = parseFloat(document.getElementById('flowrate').value);
+            var unit = parseFloat(document.getElementById('unit').value);
+
+            if (isNaN(dn) || isNaN(flowrate) || dn <= 0 || flowrate <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid DN and flow rate.';
+                return;
+            }
+
+            // Convert flow rate to m³/s
+            flowrate = flowrate * unit;
+
+            // Calculate speed
+            var speed = flowrate / (Math.pow((dn / 1000), 2) * Math.PI / 4);
+            document.getElementById('result').innerText = 'Flow Speed: ' + speed.toFixed(3) + ' m/s';
+        }
+    </script>
+</body>
+</html>

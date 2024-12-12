@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Graphs</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Flow Graphs</h1>
+    </div>
+
+    <div class="container">
+        <label for="valve_type">Valve Type</label>
+        <select id="valve_type" name="valve_type">
+            <option value="BV">BV</option>
+            <option value="TCV">TCV</option>
+            <option value="HTCV">HTCV</option>
+            <option value="SSCV">SSCV</option>
+            <option value="HSSCV">HSSCV</option>
+            <option value="NCV">NCV</option>
+            <option value="SCV">SCV</option>
+            <option value="ARV">ARV</option>
+        </select>
+
+        <label for="dn">DN</label>
+        <select id="dn" name="dn">
+            <!-- Generate DN options dynamically -->
+            <script>
+                for (var i = 100; i <= 2500; i += 50) {
+                    document.write('<option value="' + i + '">' + i + '</option>');
+                }
+            </script>
+        </select>
+
+        <label for="pressure_class">Pressure Class</label>
+        <select id="pressure_class" name="pressure_class">
+            <option value="PN10">PN10</option>
+            <option value="PN16">PN16</option>
+            <option value="PN25">PN25</option>
+            <option value="PN40">PN40</option>
+            <option value="PN63">PN63</option>
+        </select>
+
+        <div class="submit" style="text-align: center;">
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+</body>
+</html>

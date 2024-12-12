@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Drawings</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Technical Drawings</h1>
+    </div>
+
+    <div class="container">
+        <label for="drawing_type">Drawing Type</label>
+        <select id="drawing_type">
+            <option value="Standard">Standard</option>
+            <option value="American">American</option>
+            <option value="South African">South African</option>
+        </select>
+
+        <label for="valve_type">Valve Type</label>
+        <select id="valve_type">
+            <option value="BV">BV</option>
+            <option value="TCV">TCV</option>
+        </select>
+
+        <label for="pressure_class">Pressure Class</label>
+        <select id="pressure_class">
+            <option value="PN10">PN10</option>
+            <option value="PN16">PN16</option>
+            <option value="PN25">PN25</option>
+            <option value="PN40">PN40</option>
+            <option value="PN63">PN63</option>
+        </select>
+
+        <label for="dn">DN</label>
+        <select id="dn">
+            <!-- Generate DN options dynamically -->
+            <script>
+                for (let i = 100; i <= 2500; i += 50) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                }
+            </script>
+        </select>
+
+        <div class="submit" style="text-align: center;">
+            <button id="download-button">Download PDF</button>
+        </div>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+</body>
+</html>

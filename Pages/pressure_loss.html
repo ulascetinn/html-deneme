@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Loss Calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Pressure Loss Calculator</h1>
+    </div>
+
+    <div class="container">
+        <div class="input-field">
+            <label for="velocity">Velocity (m/s):</label>
+            <input type="number" id="velocity" name="velocity" step="0.01" oninput="calculatePressureLoss()">
+        </div>
+        <div class="input-field">
+            <label for="zeta">Zeta (ζ):</label>
+            <input type="number" id="zeta" name="zeta" step="0.01" oninput="calculatePressureLoss()">
+        </div>
+        <div class="input-field">
+            <label for="unit">Pressure Loss Unit:</label>
+            <select id="unit" name="unit" onchange="calculatePressureLoss()">
+                <option value="0.00001" selected>bar</option>
+                <option value="0.10197">mWc</option>
+                <option value="0.001">kPa</option>
+                <option value="0.000145038">psi</option>
+            </select>
+        </div>
+        <div id="result">Pressure Loss: </div>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        function calculatePressureLoss() {
+            var velocity = parseFloat(document.getElementById('velocity').value);
+            var zeta = parseFloat(document.getElementById('zeta').value);
+            var unit = parseFloat(document.getElementById('unit').value);
+
+            if (isNaN(velocity) || isNaN(zeta) || velocity <= 0 || zeta <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid velocity and zeta.';
+                return;
+            }
+
+            // Calculate pressure loss in Pa (ΔP = 0.5 * ρ * v^2 * ζ)
+            // Assuming water, ρ (density) = 1000 kg/m³
+            var pressure_loss_pa = 0.5 * 1000 * Math.pow(velocity, 2) * zeta;
+
+            // Convert pressure loss to the selected unit
+            var pressure_loss = pressure_loss_pa * unit;
+
+            document.getElementById('result').innerText = 'Pressure Loss: ' + pressure_loss.toFixed(6) + ' ' +
+                document.getElementById('unit').options[document.getElementById('unit').selectedIndex].text;
+        }
+    </script>
+</body>
+</html>

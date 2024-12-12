@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Rate Calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Flow Rate Calculator</h1>
+    </div>
+
+    <div class="container">
+        <div class="input-field">
+            <label for="flow_speed">Flow Speed (m/s):</label>
+            <input type="number" id="flow_speed" name="flow_speed" step="0.01" oninput="calculateFlowRate()">
+        </div>
+        <div class="input-field">
+            <label for="dn">DN (mm):</label>
+            <input type="number" id="dn" name="dn" oninput="calculateFlowRate()">
+        </div>
+        <div class="input-field">
+            <label for="unit">Flow Rate Unit:</label>
+            <select id="unit" name="unit" onchange="calculateFlowRate()">
+                <option value="1" selected>m³/s</option>
+                <option value="1000">L/s</option>
+                <option value="3600">m³/h</option>
+                <option value="60000">L/min</option>
+                <option value="86.4">ML/d</option>
+            </select>
+        </div>
+        <div id="result">Flow Rate: </div>
+    </div>
+
+    <div class="back-buttons">
+        <button onclick="history.back();">Back</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        function calculateFlowRate() {
+            var flow_speed = parseFloat(document.getElementById('flow_speed').value);
+            var dn = parseFloat(document.getElementById('dn').value);
+            var unit = parseFloat(document.getElementById('unit').value);
+
+            if (isNaN(flow_speed) || isNaN(dn) || dn <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid flow speed and DN.';
+                return;
+            }
+
+            // Convert DN from mm to meters
+            var dn_meters = dn / 1000;
+
+            // Calculate flow rate in m³/s
+            var flow_rate = flow_speed * (Math.PI * Math.pow(dn_meters / 2, 2));
+
+            // Convert flow rate to the selected unit
+            flow_rate *= unit;
+
+            document.getElementById('result').innerText = 'Flow Rate: ' + flow_rate.toFixed(6) + ' ' +
+                document.getElementById('unit').options[document.getElementById('unit').selectedIndex].text;
+        }
+    </script>
+</body>
+</html>
